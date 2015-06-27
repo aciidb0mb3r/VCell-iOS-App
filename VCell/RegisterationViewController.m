@@ -12,6 +12,7 @@
 
 @interface RegisterationViewController ()
 
+@property UITapGestureRecognizer *tapToHide;
 
 @end
 
@@ -20,8 +21,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _tapToHide = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    _tapToHide.cancelsTouchesInView = NO; // Will ensure that cell selection takes place when tapped
+    [self.tableView addGestureRecognizer:_tapToHide];
+
 }
 
+- (void)hideKeyboard
+{
+    [_usernameTF resignFirstResponder];
+    [_passwordTF resignFirstResponder];
+    [_rePasswordTF resignFirstResponder];
+    [_firstNameTF resignFirstResponder];
+    [_lastNameTF resignFirstResponder];
+    [_emailTF resignFirstResponder];
+    [_institutionTF resignFirstResponder];
+    [_countryTF resignFirstResponder];
+}
 //-(void)tableClicked
 //{
 //    [self.usernameTF resignFirstResponder];
